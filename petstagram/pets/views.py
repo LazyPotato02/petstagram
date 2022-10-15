@@ -1,18 +1,30 @@
 from django.shortcuts import render
 
-
 # Create your views here.
+from petstagram.core.utils import apply_likes_count, apply_user_liked_photo
+from petstagram.pets.utils import get_pet_by_name_and_username
+
+
 def add_pet(request):
     return render(request, 'pet-add-page.html')
 
 
-def delete_pet(request, username, pet_name):
+def delete_pet(request, username, pet_slug):
     return render(request, 'pet-delete-page.html')
 
 
-def details_pet(request, username, pet_name):
-    return render(request, 'pet-details-page.html')
+def details_pet(request, username, pet_slug):
+    pet = get_pet_by_name_and_username(pet_slug, username)
+    photos = [apply_likes_count(photo) for photo in pet.photo_set.all()]
+    photos = [apply_user_liked_photo(photo) for photo in photos]
+
+    context = {
+        'pet': pet,
+        'photos_count': pet.photo_set.count(),
+        'pet_photos': photos,
+    }
+    return render(request, 'pet-details-page.html', context)
 
 
-def edit_pet(request, username, pet_name):
+def edit_pet(request, username, pet_slug):
     return render(request, 'pet-edit-page.html')
