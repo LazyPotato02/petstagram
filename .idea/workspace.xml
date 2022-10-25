@@ -2,20 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a357f261-02c6-4852-98f9-b69133a85c33" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petstagram/common/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/common/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petstagram/common/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/common/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/petstagram/common/templates/home-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/common/templates/home-page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/petstagram/common/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/common/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/petstagram/common/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/common/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petstagram/pets/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/pets/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petstagram/pets/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/pets/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petstagram/pets/templates/pet-details-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/pets/templates/pet-details-page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petstagram/pets/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/pets/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petstagram/pets/templates/pet-add-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/pets/templates/pet-add-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petstagram/pets/templates/pet-delete-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/pets/templates/pet-delete-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petstagram/pets/templates/pet-edit-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/pets/templates/pet-edit-page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/petstagram/pets/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/pets/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petstagram/photos/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/photos/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/petstagram/photos/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/photos/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petstagram/photos/templates/photo-add-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/photos/templates/photo-add-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petstagram/photos/templates/photo-details-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/photos/templates/photo-details-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petstagram/photos/templates/photo-edit-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/photos/templates/photo-edit-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petstagram/photos/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/photos/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petstagram/photos/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/photos/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/petstagram/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petstagram/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/petstagram/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/photo-item.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/photo-item.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +33,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -54,7 +59,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/home/lazy/Documents/Projects/Python/petstagram/petstagram/photos/migrations",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -110,11 +115,24 @@
       <workItem from="1665680650291" duration="197000" />
       <workItem from="1665680857726" duration="3089000" />
       <workItem from="1665825600864" duration="383000" />
-      <workItem from="1665834918109" duration="12948000" />
+      <workItem from="1665834918109" duration="13199000" />
+      <workItem from="1666629725489" duration="5432000" />
+      <workItem from="1666711456313" duration="9792000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/petstagram/pets/forms.py</url>
+          <line>28</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
