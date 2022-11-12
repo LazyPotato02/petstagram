@@ -33,20 +33,29 @@
                         <!-- Link to Add Photo Page -->
                         <a href="{% url 'add-photo' %}"><i>Add Photo</i></a>
                     </li>
-                    <li class="nav-item">
-                        <!-- Link to Login Page -->
-                        <a href="{% url 'login' %}"><i>Login</i></a>
-                    </li>
-                    <li class="nav-item">
-                        <!-- Link to Register Page -->
-                        <a href="{% url 'register' %}"><i>Register</i></a>
-                    </li>
-                    <li class="nav-item">
-                        <!-- Link to Profile Page -->
-                        <a href="{% url 'profile-details' 1 %}">
-                            <i>Profile</i>
-                        </a>
-                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <!-- Link to Profile Page -->
+                            <a href="{% url 'profile-details' pk=request.user.pk %}">
+                                <i>Profile</i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <!-- Link to Profile Page -->
+                            <a href="{% url 'logout' %}">
+                                <i>Sign Out</i>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <!-- Link to Login Page -->
+                            <a href="{% url 'login' %}"><i>Sign In</i></a>
+                        </li>
+                        <li class="nav-item">
+                            <!-- Link to Register Page -->
+                            <a href="{% url 'register' %}"><i>Sign Up</i></a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

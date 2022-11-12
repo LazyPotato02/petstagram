@@ -27,7 +27,11 @@
                             <!-- Link to User Profile Details Page -->
                             <a href="#">
                                 <!-- IF user has first name and last name -->
-                                Diyan Kalaydzhiev
+                                {% if  photo.user.get_full_name %}
+                                    {{ photo.user.get_full_name }}
+                                {% else %}
+                                    {{ photo.user.username }}
+                                {% endif %}
                                 <!-- else -->
                                 <!-- show user username -->
                             </a>
@@ -38,19 +42,21 @@
                                 <span>{{ photo.location }}</span>
                             {% endif %}
                             <!-- IF the viewer is the creator of the photo -->
-                            <div class="edit-delete-btns">
+                            {% if is_owner %}
+                                <div class="edit-delete-btns">
 
-                                <!-- Link to Edit Pet Photo Page -->
-                                <a href="{% url 'edit photo' pk=photo.pk %}">
-                                    <img class="edit-img" src="/static/images/edit-pen-icon-6.jpg"
-                                         alt="edit button">
-                                </a>
+                                    <!-- Link to Edit Pet Photo Page -->
+                                    <a href="{% url 'edit photo' pk=photo.pk %}">
+                                        <img class="edit-img" src="/static/images/edit-pen-icon-6.jpg"
+                                             alt="edit button">
+                                    </a>
 
-                                <!-- Link to Delete Pet Photo Page -->
-                                <a href="{% url 'delete photo' pk=photo.pk %}">
-                                    <img class="bin-img" src="/static/images/icon-remove-22.jpg" alt="bin button">
-                                </a>
-                            </div>
+                                    <!-- Link to Delete Pet Photo Page -->
+                                    <a href="{% url 'delete photo' pk=photo.pk %}">
+                                        <img class="bin-img" src="/static/images/icon-remove-22.jpg" alt="bin button">
+                                    </a>
+                                </div>
+                            {% endif %}
                             <!-- End IF the viewer is the creator of the photo -->
 
                         </h3>
@@ -60,9 +66,9 @@
                 </div>
 
                 <!-- Start Pet Photo -->
-                <div class="imgBx" id="place the id of the photo here">
-                    <!-- Pet Photo -->
-                    <img src="/media/{{ photo.photo }}" alt="photo of the pets {{ photo.tagged_pets.all|join:', ' }}"
+                <div class="imgBx" id="{{ photo.pk }}">
+                    <img src="/media/{{ photo.photo }}"
+                         alt="photo of the pets {{ photo.tagged_pets.all|join:', ' }}"
                          class="cover">
                 </div>
                 <!-- End Pet Photo -->
@@ -77,16 +83,16 @@
                             <span class="heart">
 
                                     <!-- Link to Like Path -->
-									<a href="{% url 'like photo' photo_id=photo.pk%}">
+									<a href="{% url 'like photo' photo_id=photo.pk %}">
                                         {% if has_user_liked_photo %}
-										<!-- IF user has liked the photo -->
-                                        <svg style="color: red"
-                                             xmlns="http://www.w3.org/2000/svg"
-                                             width="24"
-                                             height="24"
-                                             fill="currentColor"
-                                             class="bi bi-heart-fill"
-                                             viewBox="0 0 16 16">
+                                            <!-- IF user has liked the photo -->
+                                            <svg style="color: red"
+                                                 xmlns="http://www.w3.org/2000/svg"
+                                                 width="24"
+                                                 height="24"
+                                                 fill="currentColor"
+                                                 class="bi bi-heart-fill"
+                                                 viewBox="0 0 16 16">
                                             <!-- Coordinate path -->
                                             <path fill-rule="evenodd"
                                                   d="M8 1.314C12.438-3.248 23.534 4.735
@@ -95,14 +101,14 @@
                                             </path>
                                         </svg>
                                         {% else %}
-                                        <!-- IF NOT user has liked the photo -->
-                                        <svg aria-label="Like"
-                                             color="#262626"
-                                             fill="#262626"
-                                             height="24"
-                                             role="img"
-                                             viewBox="0 0 48 48"
-                                             width="24">
+                                            <!-- IF NOT user has liked the photo -->
+                                            <svg aria-label="Like"
+                                                 color="#262626"
+                                                 fill="#262626"
+                                                 height="24"
+                                                 role="img"
+                                                 viewBox="0 0 48 48"
+                                                 width="24">
                                         <!-- Coordinate path -->
                                         <path d="M34.6 6.1c5.7 0 10.4 5.2 10.4
                                                     11.5 0 6.8-5.9 11-11.5 16S25 41.3 24
@@ -143,25 +149,22 @@
                     <!-- End Like and Share Buttons Section -->
 
                     <!-- Number of Likes for the Photo -->
-                    <p class="likes">{{ likes_count}} likes</p>
+                    <p class="likes">{{ likes_count }} likes</p>
 
                     <!-- Start Tagged Pets Section-->
                     <!-- Link to First Tagged Pet Details Page -->
-                    <a href="#">
-                        <p class="message">
-                            <b>Sasho</b>
-                        </p>
-                    </a>
-                    <!-- Link to Second Tagged Pet Details Page -->
-                    <a href="#">
-                        <p class="message">
-                            <b>Some other fish</b>
-                        </p>
-                    </a>
-                    <!-- End Tagged Pets Section-->
+
+                    {% for pet in photo.tagged_pets.all %}
+                        <a href="{% url 'details pet' pet_slug=pet.slug username=pet.user.username %}">
+                            <p class="message">
+                                <b>{{ pet.name }}</b>
+                            </p>
+                        </a>
+                    {% endfor %}
+
 
                     <!-- Date of Publication or edit of the Photo -->
-                    <h5 class="postTime">19/09/2022</h5>
+                    <h5 class="postTime">{{ photo.publication_date }}</h5>
 
                     <!-- Start Comments Section -->
                     <div class="comments">
@@ -190,7 +193,6 @@
                     </div>
                     <!-- End Comments Section -->
                 </div>
-
                 <!-- Start Add Comments Section -->
                 <div class="addComments">
                     <div class="reaction">
@@ -217,5 +219,4 @@
 
         </div>
     </div>
-
 {% endblock %}

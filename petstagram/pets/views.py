@@ -1,6 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from petstagram.core.decorator import is_owner
 from petstagram.core.utils import apply_likes_count, apply_user_liked_photo
 from petstagram.pets.forms import PetCreateForm, PetEditForm, PetDeleteForm
 from petstagram.pets.models import Pet
@@ -16,10 +18,17 @@ def details_pet(request, username, pet_slug):
         'pet': pet,
         'photos_count': pet.photo_set.count(),
         'pet_photos': photos,
+        'is_owner': pet.user == request.user,
     }
-    return render(request, 'pet-details-page.html', context)
+
+    return render(
+        request,
+        'pet-details-page.html',
+        context,
+    )
 
 
+@login_required
 def add_pet(request):
     if request.method == 'GET':
         form = PetCreateForm()
@@ -27,20 +36,23 @@ def add_pet(request):
         # request.method == `POST`
         form = PetCreateForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('profile-details', pk=1)  # TODO: fix this when auth
+            pet = form.save(commit=False)
+            pet.user = request.user
+            pet.save()
+            return redirect('profile-details', pk=request.user.pk)
 
     context = {
-        'form': PetCreateForm(),
+        'form': form,
     }
     return render(request, 'pet-add-page.html', context)
 
 
 def delete_pet(request, username, pet_slug):
-    # TODO: use `username` when auth
-    pet = Pet.objects \
-        .filter(slug=pet_slug) \
-        .get()
+    pet = get_pet_by_name_and_username(pet_slug, username)
+
+    if not is_owner(request, pet):
+        return redirect('details pet', username=username, pet_slug=pet_slug)
+
     if request.method == 'GET':
         form = PetDeleteForm(instance=pet)
     else:
@@ -58,9 +70,7 @@ def delete_pet(request, username, pet_slug):
 
 
 def edit_pet(request, username, pet_slug):
-    # TODO: use `username` when auth
-    pet = Pet.objects.filter(slug=pet_slug) \
-        .get()
+    pet = get_pet_by_name_and_username(pet_slug, username)
     if request.method == 'GET':
         form = PetEditForm(instance=pet)
     else:
